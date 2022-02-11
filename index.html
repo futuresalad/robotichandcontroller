@@ -1,0 +1,194 @@
+<!DOCTYPE html> 
+<html lang="en">
+
+    <style>
+        body {
+        background-color: #000000;
+        }
+        
+        .column {
+        font-family: 'Arial';
+        line-height: 1px;
+        height: 60px;
+        float: left;
+        font-size: 25px;
+        text-align: center;
+        border-radius: 10px;
+        padding: 5px;
+        }
+
+        h1 {
+        font-family: 'Arial';
+        color: #ff9a26;
+        text-align: center;
+        }
+
+        p {
+        font-family: 'Arial';
+        color: #ffffff;
+        font-size: 15px;
+        }
+
+        .slidecontainer {
+          width: 100%;
+        }
+        
+        .slider {
+          -webkit-appearance: none;
+          width: 100%;
+          height: 30px;
+          background: #c4c4c4;
+          outline: none;
+          opacity: 0.7;
+          border-radius: 10px;
+          -webkit-transition: .2s;
+          transition: opacity .2s;
+        }
+        
+        .slider:hover {
+          opacity: 1;
+        }
+        
+        .slider::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 35px;
+          height: 35px;
+          border-radius: 10px; 
+          background: #444444;
+          cursor: pointer;
+        }
+        
+        .slider::-moz-range-thumb {
+          width: 25px;
+          height: 25px;
+          background: #444444;
+          border-radius: 10px; 
+          cursor: pointer;
+          
+        }  
+        .button {
+          background-color: #ff9a26;
+          border: none;
+          color: black;
+          padding: 15px 32px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin: 4px 2px;
+          cursor: pointer;
+        }
+
+        }
+        </style>
+
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hand control</title>
+</head>
+
+
+<body>
+
+<table>
+  <tr>
+  <th>
+
+  </th>
+  
+  <th>
+    <div class="column" style="background-color:black; color: white;">
+      <h2>Hand</h2>
+    </div>
+    <div class="column" style="background-color:#ff9a26;">
+      <h2>hub</h2>
+    </div>
+   
+  </th>
+  
+  <th>
+
+  </th>
+  
+</tr>
+
+
+<tr>
+
+    <th>
+    <button type="button" class="button" id="1" onclick="pose(this.id)">Pinch</button>
+    </th>
+    
+    <th>
+    <button type="button" class="button" id="2" onclick="pose(this.id)">Open</button>
+    </th>
+    
+    <th>
+    <button type="button" class="button" id="3" onclick="pose(this.id)">Close</button>
+    </th>
+    </tr>
+    
+ </table>   
+
+ 
+    <h1>Finger</h1>
+
+    <p>MCP X</p>
+    <div class="slidecontainer1">
+        <input type="range" min="-60" max="60" value="0" class="slider" id="5" oninput="singleMove(this.id, this.value)">
+      </div>
+
+    <p>MCP Y</p>
+      <div class="slidecontainer2">
+        <input type="range" min="-60" max="60" value="0" class="slider" id="4" oninput="singleMove(this.id, this.value)">
+      </div>
+
+      <p>PIP/DIP</p>
+      <div class="slidecontainer3">
+        <input type="range" min="-60" max="60" value="0" class="slider" id="3" oninput="singleMove(this.id, this.value)">
+      </div>
+
+
+      <h1>Thumb</h1>
+
+      <p>CMC X</p>
+      <div class="slidecontainer4">
+          <input type="range" min="-60" max="60" value="0" class="slider" id="6" oninput="singleMove(this.id, this.value)">
+        </div>
+
+        <p>CMC Y</p>
+        <div class="slidecontainer5">
+          <input type="range" min="-60" max="60" value="0" class="slider" id="7" oninput="singleMove(this.id, this.value)">
+        </div>
+
+        <p>MP</p>
+        <div class="slidecontainer6">
+          <input type="range" min="-60" max="60" value="0" class="slider" id="2" oninput="singleMove(this.id, this.value)">
+        </div>   
+
+        <p>IP</p>
+        <div class="slidecontainer7">
+            <input type="range" min="-60" max="60" value="0" class="slider" id="1" oninput="singleMove(this.id, this.value)">
+          </div>
+        </div>
+<script>
+    function singleMove(ID,POS)
+    {   
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("POST","BGNM"+ID+POS+"END", true);
+        xmlhttp.send();
+    }
+    
+        function pose(ID)
+    {   
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("POST","BGNP"+ID+"END", true);
+        xmlhttp.send();
+    }
+    
+</script>          
+          
+</body>
+</html>
